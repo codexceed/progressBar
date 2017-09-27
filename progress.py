@@ -11,7 +11,7 @@ class ProgressBar:
     def updateBar(self):
         self.current += 1
         prog = int((float(self.current)/self.size)*100)
-        s = '\r\b'*self.backspace + self.status + str(self.stages[self.current]) + ' ['+'='*prog + ' '*(100-prog) + ']' + str(prog) + '%'  # \r used to overwrite the existing progress bar
+        s = '\r' + self.status + str(self.stages[self.current]) + ' ['+'='*prog + ' '*(100-prog) + ']' + str(prog) + '%'  # \r used to overwrite the existing progress bar
         sys.stdout.write(s)  # using sys.stdout.write, we can print to current line
         sys.stdout.flush()
         self.backspace = len(s)
