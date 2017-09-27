@@ -23,3 +23,5 @@ for i in x:
     time.sleep(2)
 prog.endBar # call the endBar() function to mark the end of the list
 ```
+**Output:**<br>
+`printing 12412412 [============================================================================================        ]92%`
