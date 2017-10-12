@@ -18,10 +18,11 @@ x = [1,2,3,4,5,6,79898,8,9,10,123,1314,1241241412,12412412] # list of iterables 
 
 prog = pb(x, 'printing ') # pb object takes in 2 arguments, the iterable list and the progress status message (optional)
 
+prog.startBar()
 for i in x:
     prog.updateBar() # call the updateBar() function on the start of every task in the list
     time.sleep(2)
-prog.endBar # call the endBar() function to mark the end of the list
+prog.endBar() # call the endBar() function to mark the end of the list
 ```
 **Output:**<br>
 `printing 12412412 [============================================================================================        ]92%`
