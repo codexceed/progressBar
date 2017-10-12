@@ -14,13 +14,21 @@ class ProgressBar:
             prog = int((float(self.current)/self.size)*100)
         except:
             prog = 0
-        s = '\r' + self.status + str(self.stages[self.current]) + ' ['+'='*prog + ' '*(100-prog) + ']' + str(prog) + '%'  # \r used to overwrite the existing progress bar
-        sys.stdout.write(s)  # using sys.stdout.write, we can print to current line
-        sys.stdout.flush()
-        self.backspace = len(s)
+        try:
+            s = '\r' + self.status + str(self.stages[self.current]) + ' ['+'='*prog + ' '*(100-prog) + ']' + str(prog) + '%'  # \r used to overwrite the existing progress bar
+            sys.stdout.write(s)  # using sys.stdout.write, we can print to current line
+            sys.stdout.flush()
+            self.backspace = len(s)
+        except:
+            self.endBar()
+
+    def startBar(self):
+        self.updateBar()
 
     def endBar(self):
         self.current += 1
+        if self.current > self.size:
+            self.current = self.size
         try:
             prog = int((float(self.current) / self.size) * 100)
         except:
