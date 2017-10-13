@@ -6,7 +6,7 @@ class ProgressBar:
         self.current = -1   # current stage of the process
         self.stages = stages
         self.status = status
-        self.backspace = 0
+        self.flag = 0
 
     def updateBar(self):
         self.current += 1
@@ -18,14 +18,18 @@ class ProgressBar:
             s = '\r' + self.status + str(self.stages[self.current]) + ' ['+'='*prog + ' '*(100-prog) + ']' + str(prog) + '%'  # \r used to overwrite the existing progress bar
             sys.stdout.write(s)  # using sys.stdout.write, we can print to current line
             sys.stdout.flush()
-            self.backspace = len(s)
         except:
+            self.flag = 1
             self.endBar()
 
     def startBar(self):
-        self.updateBar()
+        s = '\r' + 'Starting..' + ' [' + '=' * 0 + ' ' * (100) + ']' + '0%'
+        sys.stdout.write(s)  # using sys.stdout.write, we can print to current line
+        sys.stdout.flush()
 
     def endBar(self):
+        if self.flag:
+            return
         self.current += 1
         if self.current > self.size:
             self.current = self.size
